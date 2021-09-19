@@ -20,28 +20,27 @@
 
   "commands": {
     "copy-link": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+C",
-        "mac": "Command+MacCtrl+C"
-      },
       "description": "Copy Link as Rich Text"
     },
     "copy-as-plain": {
       "description": "Copy Link and Title as Plain Text"
     },
-   "copy-as-markdown": {
-      "description": "Copy Link and Title as Markdown Link Text"
+    "copy-as-markdown": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+MacCtrl+C"
+      },
+       "description": "Copy Link and Title as Markdown Link Text"
     }
-  
   },
 
   "permissions": [
     "clipboardWrite",
     "tabs",
-    "contextMenus"
+    "contextMenus",
+    "storage"
   ],
   "optional_permissions": [
     "notifications"
-  ],
-  "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
+  ]
 }
