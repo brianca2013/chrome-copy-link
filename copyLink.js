@@ -1,4 +1,5 @@
 COPY_AS_PLAIN_MENU_ITEM_ID = 'CopyAsPlainText';
+COPY_AS_MARKDOWN_MENU_ITEM_ID = 'CopyAsMarkdown';
 COPY_LINK_MENU_ITEM_ID = 'CopyLink';
 
 chrome.contextMenus.removeAll();
@@ -10,6 +11,11 @@ chrome.contextMenus.create({
 chrome.contextMenus.create({
   id: COPY_AS_PLAIN_MENU_ITEM_ID,
   title: "Copy Link and Title as Plain Text",
+  contexts: ["browser_action"],
+});
+chrome.contextMenus.create({
+  id: COPY_AS_MARKDOWN_MENU_ITEM_ID,
+  title: "Copy Link and Title as Markdown Text",
   contexts: ["browser_action"],
 });
 
@@ -24,6 +30,12 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
       emitCopyEvent('html-copy-link', 'menu');
       copyTabLinkToClipboard(tab, true);
       break;
+
+    case COPY_AS_MARKDOWN_MENU_ITEM_ID:
+      emitCopyEvent('copy-markdown-text', 'menu');
+      copyTabLinkToClipboard(tab, true);
+      break;
+
 
     default:
       throw Error('Unknown menu item' + info.menuItemId);
@@ -47,6 +59,12 @@ chrome.commands.onCommand.addListener(function(command) {
 
     case 'copy-as-plain':
       emitCopyEvent('copy-plain-text', 'shortcut');
+      getActiveTab(function(tab) {
+        return copyTabLinkToClipboard(tab, False);
+      })
+
+    case 'copy-as-markdown':
+      emitCopyEvent('copy-markdown-text', 'shortcut');
       getActiveTab(function(tab) {
         return copyTabLinkToClipboard(tab, False);
       })
@@ -76,7 +94,7 @@ function setupGoogleAnalytics() {
 
 function analyticsEvent(category, action, opt_label, opt_value) {
   console.log('ga', arguments);
-  setupGoogleAnalytics();
+  // setupGoogleAnalytics();
   ga('send', {
       'hitType': 'event',
       'eventCategory': category,

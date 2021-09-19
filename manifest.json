@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Tab Link Copier",
-  "description": "Copies the current tab's url and title as a rich text link. Useful for pasting in Google Docs",
+  "name": "Super Link Copier",
+  "description": "Copies the current tab's url and title in any format you want (a rich text link, plain text, markdown link text). Useful for pasting in Google Docs or Markdown notes",
   "version": "1.2.3",
 
   "background": {
@@ -28,7 +28,11 @@
     },
     "copy-as-plain": {
       "description": "Copy Link and Title as Plain Text"
+    },
+   "copy-as-markdown": {
+      "description": "Copy Link and Title as Markdown Link Text"
     }
+  
   },
 
   "permissions": [
